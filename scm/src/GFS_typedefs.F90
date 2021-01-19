@@ -247,6 +247,36 @@ module GFS_typedefs
 
 !-- In/Out
     real (kind=kind_phys), pointer :: conv_act(:)  => null()  !< convective activity counter hli 09/2017
+    real (kind=kind_phys), pointer :: un_cush (:)  => null()  !< unicon Cumulus top height [ m ] 
+    real (kind=kind_phys), pointer :: un_cushavg(:)  => null()  !< unicon Mean cumulus top height weighted by updraft masss flux at surface [ m ]
+    real (kind=kind_phys), pointer :: un_cuorg(:)  => null()  !< unicon Covective organization parameter [ 0-1 ]
+    real (kind=kind_phys), pointer :: un_awk_PBL(:)  => null()  !< unicon Wake area within PBL [ 0 - 1 ]
+    real (kind=kind_phys), pointer :: un_delta_thl_PBL(:)  => null()  !< unicon Difference of thl between off-wake region and grid-mean value averaged over the PBL [ K ]
+    real (kind=kind_phys), pointer :: un_delta_qt_PBL(:)  => null()  !< unicon Difference of qt  between off-wake region and grid-mean value averaged over the PBL [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_delta_u_PBL(:)  => null()  !< unicon Difference of u   between off-wake region and grid-mean value averaged over the PBL [ m/s ]
+    real (kind=kind_phys), pointer :: un_delta_v_PBL(:)  => null()  !< unicon Difference of v   between off-wake region and grid-mean value averaged over the PBL [ m/s ]
+    real (kind=kind_phys), pointer :: un_delta_tr_PBL(:)  => null()  !< unicon Difference of tr  between off-wake region and grid-mean value averaged over the PBL [ kg/kg, #/kg ]
+
+    real (kind=kind_phys), pointer :: un_cu_cmfum(:,:)  => null()  !< unicon The amount of mass involved in the updraft buoyancy sorting at the previous time step [ kg/s/m2 ]
+    real (kind=kind_phys), pointer :: un_cu_cmfr (:,:)  => null()  !< unicon The amount of detrained mass from convective updraft and downdraft at the previous time step [ kg/s/m2 ]
+    real (kind=kind_phys), pointer :: un_cu_thlr (:,:)  => null()  !< unicon Mass-flux weighted mean 'thl' of detrained mass from convective updraft and downdraft at the previous time step [ K ]
+    real (kind=kind_phys), pointer :: un_cu_qtr (:,:)  => null()  !< unicon Mass-flux weighted mean 'qt'  of detrained mass from convective updraft and downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_ur  (:,:)  => null()  !< unicon Mass-flux weighted mean 'u'   of detrained mass from convective updraft and downdraft at the previous time step [ m/s ]
+    real (kind=kind_phys), pointer :: un_cu_vr  (:,:)  => null()  !< unicon Mass-flux weighted mean 'v'   of detrained mass from convective updraft and downdraft at the previous time step [ m/s ]
+    real (kind=kind_phys), pointer :: un_cu_qlr (:,:)  => null()  !< unicon Mass-flux weighted mean 'ql'  of detrained mass from convective updraft and downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_qir (:,:)  => null()  !< unicon Mass-flux weighted mean 'qi'  of detrained mass from convective updraft and downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_trr (:,:)  => null()  !< unicon Mass-flux weighted mean 'tr'  of detrained mass from convective updraft and downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_cmfrd (:,:)  => null()  !< unicon The amount of detrained mass from convective downdraft at the previous time step [ kg/s/m2 ]
+    real (kind=kind_phys), pointer :: un_cu_thlrd (:,:)  => null()  !< unicon Mass-flux weighted mean 'thl' of detrained mass from convective downdraft at the previous time step [ K ]
+    real (kind=kind_phys), pointer :: un_cu_qtrd (:,:)  => null()  !< unicon Mass-flux weighted mean 'qt'  of detrained mass from convective downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_urd (:,:)  => null()  !< unicon Mass-flux weighted mean 'u'   of detrained mass from convective downdraft at the previous time step [ m/s ]
+    real (kind=kind_phys), pointer :: un_cu_vrd (:,:)  => null()  !< unicon Mass-flux weighted mean 'v'   of detrained mass from convective downdraft at the previous time step [ m/s ]
+    real (kind=kind_phys), pointer :: un_cu_qlrd (:,:)  => null()  !< unicon Mass-flux weighted mean 'ql'  of detrained mass from convective downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_qird (:,:)  => null()  !< unicon Mass-flux weighted mean 'qi'  of detrained mass from convective downdraft at the previous time step [ kg/kg ]
+    real (kind=kind_phys), pointer :: un_cu_trrd (:,:)  => null()  !< unicon Mass-flux weighted mean 'tr'  of detrained mass from convective downdraft at the previous time step [ kg/kg ]
+
+
+
     real (kind=kind_phys), pointer :: hice   (:)   => null()  !< sea ice thickness
     real (kind=kind_phys), pointer :: weasd  (:)   => null()  !< water equiv of accumulated snow depth (kg/m**2)
                                                               !< over land and sea ice
@@ -2275,6 +2305,61 @@ module GFS_typedefs
         allocate (Sfcprop%conv_act(IM))
         Sfcprop%conv_act = zero
     end if
+
+    allocate(Sfcprop%un_cush(IM))
+    allocate(Sfcprop%un_cushavg(IM))
+    allocate(Sfcprop%un_cuorg(IM))
+    allocate(Sfcprop%un_awk_PBL(IM))
+    allocate(Sfcprop%un_delta_thl_PBL(IM))
+    allocate(Sfcprop%un_delta_qt_PBL(IM))
+    allocate(Sfcprop%un_delta_u_PBL(IM))
+    allocate(Sfcprop%un_delta_v_PBL(IM))
+    allocate(Sfcprop%un_delta_tr_PBL(IM))
+
+    Sfcprop%un_cush = zero
+    Sfcprop%un_cushavg =zero
+    Sfcprop%un_cuorg = zero
+    Sfcprop%un_awk_PBL = zero
+    Sfcprop%un_delta_thl_PBL = zero
+    Sfcprop%un_delta_qt_PBL = zero
+    Sfcprop%un_delta_u_PBL = zero
+    Sfcprop%un_delta_v_PBL = zero
+    Sfcprop%un_delta_tr_PBL = zero
+
+    allocate(Sfcprop%un_cu_cmfum(IM,Model%levs))
+    allocate(Sfcprop%un_cu_cmfr(IM,Model%levs))
+    allocate(Sfcprop%un_cu_thlr(IM,Model%levs))
+    allocate(Sfcprop%un_cu_qtr(IM,Model%levs))
+    allocate(Sfcprop%un_cu_ur(IM,Model%levs))
+    allocate(Sfcprop%un_cu_vr(IM,Model%levs))
+    allocate(Sfcprop%un_cu_qlr(IM,Model%levs))
+    allocate(Sfcprop%un_cu_qir(IM,Model%levs))
+    allocate(Sfcprop%un_cu_trr(IM,Model%levs))
+    allocate(Sfcprop%un_cu_cmfrd(IM,Model%levs))
+    allocate(Sfcprop%un_cu_thlrd(IM,Model%levs))
+    allocate(Sfcprop%un_cu_qtrd(IM,Model%levs))
+    allocate(Sfcprop%un_cu_urd(IM,Model%levs))
+    allocate(Sfcprop%un_cu_vrd(IM,Model%levs))
+    allocate(Sfcprop%un_cu_qlrd(IM,Model%levs))
+    allocate(Sfcprop%un_cu_qird(IM,Model%levs))
+
+    Sfcprop%un_cu_cmfum = zero
+    Sfcprop%un_cu_cmfr  = zero
+    Sfcprop%un_cu_thlr  = zero
+    Sfcprop%un_cu_qtr   = zero
+    Sfcprop%un_cu_ur    = zero
+    Sfcprop%un_cu_vr    = zero
+    Sfcprop%un_cu_qlr   = zero
+    Sfcprop%un_cu_qir   = zero
+    Sfcprop%un_cu_trr   = zero
+    Sfcprop%un_cu_cmfrd = zero
+    Sfcprop%un_cu_thlrd = zero
+    Sfcprop%un_cu_qtrd  = zero
+    Sfcprop%un_cu_urd   = zero
+    Sfcprop%un_cu_vrd   = zero
+    Sfcprop%un_cu_qlrd  = zero
+    Sfcprop%un_cu_qird  = zero
+
 
   end subroutine sfcprop_create
 

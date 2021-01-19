@@ -646,6 +646,181 @@
   dimensions = (horizontal_dimension)
   type = real
   kind = kind_phys
+[un_cush]
+  standard_name = unicon_cush
+  long_name = unicon cush
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_cushavg]
+  standard_name = unicon_cushavg
+  long_name = unicon cushavg
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_cuorg]
+  standard_name = unicon_cuorg
+  long_name = unicon cuorg
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_awk_PBL]
+  standard_name = unicon_awk_PBL
+  long_name = unicon awk PBL
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_delta_thl_PBL]
+  standard_name = unicon_delta_thl_PBL
+  long_name = unicon delta thl PBL
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_delta_qt_PBL]
+  standard_name = unicon_delta_qt_PBL
+  long_name = unicon delta qt PBL
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_delta_u_PBL]
+  standard_name = unicon_delta_u_PBL
+  long_name = unicon delta u PBL
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_delta_v_PBL]
+  standard_name = unicon_delta_v_PBL
+  long_name = unicon delta v PBL
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_delta_tr_PBL]
+  standard_name = unicon_delta_tr_PBL
+  long_name = unicon delta tr PBL
+  units = none
+  dimensions = (horizontal_dimension)
+  type = real
+  kind = kind_phys
+[un_cu_cmfum]
+  standard_name = unicon_cu_cmfum
+  long_name = unicon un cu cmfum
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phys
+[un_cu_cmfr]
+  standard_name = unicon_cu_cmfr
+  long_name = unicon un cu cmfr
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phys
+[un_cu_thlr]
+  standard_name = unicon_cu_thlr
+  long_name = unicon un cu thlr
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phys
+[un_cu_qtr]
+  standard_name = unicon_cu_qtr
+  long_name = unicon un cu qtr
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_ur]
+  standard_name = unicon_cu_ur
+  long_name = unicon un cu ur
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_vr]
+  standard_name = unicon_cu_vr
+  long_name = unicon un cu vr
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_qlr]
+  standard_name = unicon_cu_qlr
+  long_name = unicon un cu qlr
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real 
+  kind = kind_phy
+[un_cu_qir]
+  standard_name = unicon_cu_qir
+  long_name = unicon un cu qir
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real 
+  kind = kind_phy
+[un_cu_trr]
+  standard_name = unicon_cu_trr
+  long_name = unicon un cu trr
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real 
+  kind = kind_phy
+[un_cu_cmfrd]
+  standard_name = unicon_cu_cmfrd
+  long_name = unicon un cu cmfrd
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real 
+  kind = kind_phy
+[un_cu_thlrd]
+  standard_name = unicon_cu_thlrd
+  long_name = unicon un cu thlrd
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_qtrd]
+  standard_name = unicon_cu_qtrd
+  long_name = unicon un cu qtrd
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_urd]
+  standard_name = unicon_cu_urd
+  long_name = unicon un cu urd
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_vrd]
+  standard_name = unicon_cu_vrd
+  long_name = unicon un cu vrd
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_qlrd]
+  standard_name = unicon_cu_qlrd
+  long_name = unicon un cu qlrd
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
+[un_cu_qird]
+  standard_name = unicon_cu_qird
+  long_name = unicon un cu qird
+  units = none
+  dimensions = (horizontal_dimension,vertical_dimension)
+  type = real
+  kind = kind_phy
 [spec_sh_flux]
   standard_name = specified_kinematic_surface_upward_sensible_heat_flux
   long_name = specified kinematic surface upward sensible heat flux
